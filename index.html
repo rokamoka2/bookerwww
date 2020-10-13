@@ -1,33 +1,80 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Könyvek teszt</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Könyvek</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 </head>
 <body>
-
-  <nav class="navbar is-primary has-shadow">
-    <!-- logo / brand -->
-    <div class="navbar-brand">
-      <a class="navbar-item">
-        <img src="assets/book.png">
-      </a>
-      <a class="navbar-burger" class="py-2 px-2" id="burger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </a>
-    </div>
-  
-    <div class="navbar-menu" id="nav-links">
+    <nav class="navbar is-primary has-shadow">
+        <!-- logo / brand -->
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <!-- <img src="assets/logo.png" style="max-height: 70px" class="py-2 px-2"> -->
+            <p>Könyvek</p>
+          </a>
+          <a class="navbar-burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+        </div>
+      
+        <div class="navbar-menu" id="nav-links">
         <!-- right links -->
-        <div class="navbar-end">    
-        <a class="navbar-item">Könyvek</a>
-      </div>
-    </div>
-  </nav>
-
-  <script src="index.js"></script>
+            <div class="navbar-end">
+                <div class="navbar-item has-dropdown" id="konyvekDropdown">
+                    <a class="navbar-link">
+                        Könyvek
+                    </a>
+                    <div class="navbar-dropdown">
+                        <!-- Other navbar items -->
+                        <a class="navbar-item">
+                            Összes
+                        </a>
+                        <a class="navbar-item">
+                            Könyveim
+                        </a>
+                        <a class="navbar-item">
+                            Hozzáadás
+                        </a>
+                    </div>
+                </div>
+                <a class="navbar-item">
+                    Profilom
+                </a>
+                <div class="navbar-item has-dropdown" id="adminDropdown">
+                    <a class="navbar-link">
+                        Admin
+                    </a>
+                    <div class="navbar-dropdown">
+                        <!-- Other navbar items -->
+                        <a class="navbar-item">
+                            Könyvek
+                        </a>
+                        <a class="navbar-item">
+                            Felhasználók
+                        </a>
+                        <a class="navbar-item">
+                            Csoportok
+                        </a>
+                    </div>
+                </div>
+            <a class="navbar-item">Kijelentkezés</a>
+          </div>
+        </div>
+    </nav>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">
+            Hello World
+            </h1>
+            <p class="subtitle">
+            My first website with <strong>Bulma</strong>!
+            </p>
+        </div>
+    </section>
+<script src="index.js"></script>
 </body>
 </html>
