@@ -25,3 +25,14 @@ adminDropdown.addEventListener('click' , () => {
     adminDropdownMenu.classList.toggle('is-hidden');  
     adminDropdown.classList.toggle('is-active');
 });
+
+//Modals
+function closeModal(modalName) {
+    var modal = document.querySelector('#' + modalName);
+    modal.classList.remove('is-active');
+}
+
+function openModal(modalName) {
+    var modal = document.querySelector('#' + modalName);
+    modal.classList.add('is-active');
+}

@@ -35,7 +35,7 @@
                         <a class="navbar-item">
                             Könyveim
                         </a>
-                        <a class="navbar-item">
+                        <a class="navbar-item" onclick="openModal('addModal')">
                             Hozzáadás
                         </a>
                     </div>
@@ -124,6 +124,75 @@
             </div>            
         </div>
     </section>
+
+    <!-- modals-->
+    <div class="modal" id="addModal">
+        <div class="modal-background" id="addModalBg" onclick="closeModal('addModal')"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Hozzáadás</p>
+                <button class="delete" aria-label="close" id="closeModal" onclick="closeModal('addModal')"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="container"><br>
+                    <form action="#" th:action="@{/savebook}" th:object="${book}" method="post"></form>
+                        <div class="form-group" hidden>
+                            <input type="text" th:field="*{id}" value="${book.id}" class="form-control form-control-lg" id="id">
+                        </div>
+
+                        <div class="field">
+                            <label for="author" class="label">Szerző</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{author}" th:value="${book.author}" id="author" placeholder="Szerző neve">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="title" class="label">Cím</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{title}" th:value="${book.title}" id="title" placeholder="Cím">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="genre" class="label">Műfaj</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{genre}" th:value="${book.genre}" id="genre" placeholder="Műfaj">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="releaseYear" class="label">Kiadás</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{releaseYear}" th:value="${book.releaseYear}" id="releaseYear" placeholder="Kiadás">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="series" class="label">Sorozat</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{series}" th:value="${book.series}" id="series" placeholder="Sorozat">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="place" class="label">Hely</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{place}" th:value="${book.place}" id="place" placeholder="Hely">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="isbn" class="label">ISBN azonosító</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{isbn}" th:value="${book.isbn}" id="isbn" placeholder="ISBN azonosító">
+                            </div>
+                        </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button type="submit" class="button is-success">Mentés</button>
+                <button type="reset" class="button">Mégse</button>
+            </footer>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer-->
     <footer class="footer">
         <div class="content has-text-centered">
           <p>
