@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Könyvek</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+</head>
+
+<body>
+    <nav class="navbar is-primary has-shadow">
+        <!-- logo / brand -->
+        <div class="navbar-brand">
+            <a class="navbar-item">
+                <img src="assets/book.png" alt="Book">
+            </a>
+            <a class="navbar-burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+
+        <div class="navbar-menu" id="nav-links">
+            <!-- right links -->
+            <div class="navbar-end">
+                <div class="navbar-item has-dropdown" id="konyvekDropdown">
+                    <a class="navbar-link" onclick="toggleDropdown(this.id)" id="konyvekDropDownLink">
+                        Könyvek
+                    </a>
+                    <div class="navbar-dropdown" id="konyvekDropdownMenu">
+                        <!-- Other navbar items -->
+                        <a class="navbar-item">
+                            Összes
+                        </a>
+                        <a class="navbar-item">
+                            Könyveim
+                        </a>
+                        <a class="navbar-item" onclick="openModal('addModal')">
+                            Hozzáadás
+                        </a>
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown">
+                    <a class="navbar-link" onclick="toggleDropdown(this.id)" id="profileDropDownLink">
+                        Profilom
+                    </a>
+                    <div class="navbar-dropdown">
+                        <!-- Other navbar items -->
+                        <a class="navbar-item" href="profile.html">
+                            Adatok
+                        </a>
+                        <a class="navbar-item" href="wardrobe.html">
+                            Szekrények és polcok
+                        </a>
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown" id="adminDropdown">
+                    <a class="navbar-link" onclick="toggleDropdown(this.id)" id="adminDropDownLink">
+                        Admin
+                    </a>
+                    <div class="navbar-dropdown" id="adminDropdownMenu">
+                        <!-- Other navbar items -->
+                        <a class="navbar-item">
+                            Könyvek
+                        </a>
+                        <a class="navbar-item">
+                            Felhasználók
+                        </a>
+                        <a class="navbar-item">
+                            Csoportok
+                        </a>
+                    </div>
+                </div>
+                <a class="navbar-item">Kijelentkezés</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container has-text-centered">
+        <button onclick="openModal('wardrobeModal')" class="button is-success mx-5 my-3">Szekrény létrehozása</button>
+        <button onclick="openModal('shelfModal')" class="button is-success mx-5 my-3">Polc létrehozása</button>
+    </div>
+
+    <!-- modals-->
+    <div class="modal" id="addModal">
+        <div class="modal-background" id="addModalBg" onclick="closeModal('addModal')"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Hozzáadás</p>
+                <button class="delete" aria-label="close" id="closeModal" onclick="closeModal('addModal')"></button>
+            </header>
+            <section class="modal-card-body">
+                <form action="#" th:action="@{/savebook}" th:object="${book}" method="post">
+                    <div class="container"><br>
+                        <div class="field is-hidden">
+                            <label for="id" class="label">Azonosító</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{id}" th:value="${book.id}" id="id"
+                                    placeholder="Azonosító">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="author" class="label">Szerző</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{author}" th:value="${book.author}"
+                                    id="author" placeholder="Szerző neve">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="title" class="label">Cím</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{title}" th:value="${book.title}" id="title"
+                                    placeholder="Cím">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="genre" class="label">Műfaj</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{genre}" th:value="${book.genre}" id="genre"
+                                    placeholder="Műfaj">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="releaseYear" class="label">Kiadás</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{releaseYear}"
+                                    th:value="${book.releaseYear}" id="releaseYear" placeholder="Kiadás">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="series" class="label">Sorozat</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{series}" th:value="${book.series}"
+                                    id="series" placeholder="Sorozat">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="place" class="label">Hely</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{place}" th:value="${book.place}" id="place"
+                                    placeholder="Hely">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="isbn" class="label">ISBN azonosító</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{isbn}" th:value="${book.isbn}" id="isbn"
+                                    placeholder="ISBN azonosító">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <button type="submit" class="button is-success">Mentés</button>
+                <button type="reset" class="button">Mégse</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Specified modals-->
+
+    <div class="modal" id="wardrobeModal">
+        <div class="modal-background" id="addModalBg" onclick="closeModal('wardrobeModal')"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Szekrény létrehozása</p>
+                <button class="delete" aria-label="close" id="closeModal" onclick="closeModal('wardrobeModal')"></button>
+            </header>
+            <section class="modal-card-body">
+                <form action="#" th:action="@{/savebook}" th:object="${book}" method="post">
+                    <div class="container"><br>
+                        <div class="field is-hidden">
+                            <label for="id" class="label">Azonosító</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{id}" th:value="${book.id}" id="id"
+                                    placeholder="Azonosító">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="author" class="label">Megnevezés</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{author}" th:value="${book.author}" id="author"
+                                    placeholder="Szerző neve">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="title" class="label">Leírás</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{title}" th:value="${book.title}" id="title"
+                                    placeholder="Cím">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <button type="submit" class="button is-success">Mentés</button>
+                <button type="reset" class="button">Mégse</button>
+            </footer>
+        </div>
+    </div>
+
+    <div class="modal" id="shelfModal">
+        <div class="modal-background" id="addModalBg" onclick="closeModal('shelfModal')"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Polc létrehozása</p>
+                <button class="delete" aria-label="close" id="closeModal" onclick="closeModal('shelfModal')"></button>
+            </header>
+            <section class="modal-card-body">
+                <form action="#" th:action="@{/savebook}" th:object="${book}" method="post">
+                    <div class="container"><br>
+                        <div class="field is-hidden">
+                            <label for="id" class="label">Azonosító</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{id}" th:value="${book.id}" id="id"
+                                    placeholder="Azonosító">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="author" class="label">Megnevezés</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{author}" th:value="${book.author}" id="author"
+                                    placeholder="Szerző neve">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="author" class="label">Szekrény</label>                            
+                            <div class="select">
+                                <select>
+                                    <option>Select dropdown</option>
+                                    <option>With options</option>
+                                </select>
+                            </div>                            
+                        </div>
+                        <div class="field">
+                            <label for="title" class="label">Leírás</label>
+                            <div class="control">
+                                <input type="text" class="input" th:field="*{title}" th:value="${book.title}" id="title"
+                                    placeholder="Cím">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <button type="submit" class="button is-success">Mentés</button>
+                <button type="reset" class="button">Mégse</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Footer-->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                A <strong>Bookert</strong> Csikász Csaba fejlesztette. A külső információk az <a
+                    href="moly.hu">moly.hu</a>-ról származnak.
+            </p>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+
+</html>
