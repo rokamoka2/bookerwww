@@ -24,10 +24,10 @@
         <!-- right links -->
             <div class="navbar-end">
                 <div class="navbar-item has-dropdown" id="konyvekDropdown">
-                    <a class="navbar-link">
+                    <a class="navbar-link" onclick="toggleDropdown(this.id)" id="konyvekDropDownLink">
                         Könyvek
                     </a>
-                    <div class="navbar-dropdown is-hidden" id="konyvekDropdownMenu">
+                    <div class="navbar-dropdown" id="konyvekDropdownMenu">
                         <!-- Other navbar items -->
                         <a class="navbar-item">
                             Összes
@@ -40,14 +40,25 @@
                         </a>
                     </div>
                 </div>
-                <a class="navbar-item">
-                    Profilom
-                </a>
+                <div class="navbar-item has-dropdown">
+                    <a class="navbar-link" onclick="toggleDropdown(this.id)" id="profileDropDownLink">
+                        Profilom
+                    </a>
+                    <div class="navbar-dropdown">
+                        <!-- Other navbar items -->
+                        <a class="navbar-item">
+                            Adatok
+                        </a>
+                        <a class="navbar-item">
+                            Szekrények és polcok
+                        </a>
+                    </div>
+                </div>
                 <div class="navbar-item has-dropdown" id="adminDropdown">
-                    <a class="navbar-link">
+                    <a class="navbar-link" onclick="toggleDropdown(this.id)" id="adminDropDownLink">
                         Admin
                     </a>
-                    <div class="navbar-dropdown is-hidden" id="adminDropdownMenu">
+                    <div class="navbar-dropdown" id="adminDropdownMenu">
                         <!-- Other navbar items -->
                         <a class="navbar-item">
                             Könyvek

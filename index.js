@@ -7,25 +7,6 @@ burgerIcon.addEventListener('click' , () => {
     navbarMenu.classList.toggle('is-active');
 });
 
-
-// Menu dropdowns
-const konyvekDropdownMenu = document.querySelector('#konyvekDropdownMenu');
-const konyvekDropdown = document.querySelector('#konyvekDropdown');
-const adminDropdown = document.querySelector('#adminDropdown');
-const adminDropdownMenu = document.querySelector('#adminDropdownMenu');
-
-
-
-konyvekDropdown.addEventListener('click' , () => {  
-    konyvekDropdownMenu.classList.toggle('is-hidden');
-    konyvekDropdown.classList.toggle('is-active');
-});
-
-adminDropdown.addEventListener('click' , () => {
-    adminDropdownMenu.classList.toggle('is-hidden');  
-    adminDropdown.classList.toggle('is-active');
-});
-
 //Modals
 function closeModal(modalName) {
     var modal = document.querySelector('#' + modalName);
@@ -35,4 +16,11 @@ function closeModal(modalName) {
 function openModal(modalName) {
     var modal = document.querySelector('#' + modalName);
     modal.classList.add('is-active');
+}
+
+// Dropdown menus
+
+function toggleDropdown(ddLink){
+    var dd = document.querySelector('#' + ddLink).parentElement;
+    dd.classList.toggle('is-active');
 }
